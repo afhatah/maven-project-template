@@ -26,7 +26,11 @@ public class PackageTest {
                 { 123, 191, 18,  2.354d, "MC", "13.04" },
                 { 253, 215, 164, 1.565d, "MC", "33.03" },
                 { 653, 133, 271, 2.132d, "MC", "50.10" },
-                { 653, 331, 271, 3.650d, "MC", "91.05" }
+                { 653, 331, 271, 3.650d, "MC", "91.05" },
+                { 191, 123, 18, 2.354d, "DOM/TOM", "13.91" },
+                { 253, 215, 164, 1.565d, "DOM/TOM", "33.29" },
+                { 653, 133, 271, 2.132d, "DOM/TOM", "49.84" },
+                { 653, 331, 271, 3.650d, "DOM/TOM", "89.54" }
 
         });
     }
@@ -55,6 +59,8 @@ public class PackageTest {
 
         if (this.dest.equals("FR"))
             assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.FR), 0.001d);
+        else if (this.dest.equals("DOM/TOM"))
+            assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.DOMTOM), 0.001d);
         else
             assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.MC), 0.001d);
     }

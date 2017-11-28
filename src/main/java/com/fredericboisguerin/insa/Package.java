@@ -18,7 +18,6 @@ public abstract class Package {
         this.width = width;
         this.weight = weight;
         this.depth = depth;
-
     }
 
     public abstract double calculateLocalShippingCost();
