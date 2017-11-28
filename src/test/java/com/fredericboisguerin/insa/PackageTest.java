@@ -14,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(Parameterized.class)
-public class PackagefTest {
+public class PackageTest {
 
     @Parameters
     public static Collection<Object[]> data() {
@@ -38,7 +38,7 @@ public class PackagefTest {
     private String dest;
     private String expected;
 
-    public PackagefTest(int height, int width, int depth, double weight, String dest, String expected) {
+    public PackageTest(int height, int width, int depth, double weight, String dest, String expected) {
         this.height = height;
         this.width = width;
         this.depth = depth;
@@ -50,7 +50,19 @@ public class PackagefTest {
     @org.junit.Test
     public void test() {
         ShippingCostsCalculator calc = new ShippingCostsCalculator();
-        Packagef p = new Packagef(this.height, this.width, this.depth, this.weight);
+        double dimension = (double) (this.height*this.width*this.depth);
+        Package p;
+        if (dimension <= Package.DIMENSION_REFERENCE) {
+            p = new SmallPackage(this.height, this.width, this.depth, this.weight);
+        }
+        else if (weight <= Package.WEIGHT_REFERENCE && dimension > Package.DIMENSION_REFERENCE) {
+            p = new MediumPackage(this.height, this.width, this.depth, this.weight);
+        }
+        else {
+            p = new BigPackage(this.height, this.width, this.depth, this.weight);
+        }
+
+
         if (this.dest.equals("FR"))
             assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.FR), 0.001d);
         else
@@ -58,4 +70,3 @@ public class PackagefTest {
     }
 
 }
-
