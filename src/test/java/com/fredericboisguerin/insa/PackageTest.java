@@ -50,18 +50,8 @@ public class PackageTest {
     @org.junit.Test
     public void test() {
         ShippingCostsCalculator calc = new ShippingCostsCalculator();
-        double dimension = (double) (this.height*this.width*this.depth);
-        Package p;
-        if (dimension <= Package.DIMENSION_REFERENCE) {
-            p = new SmallPackage(this.height, this.width, this.depth, this.weight);
-        }
-        else if (weight <= Package.WEIGHT_REFERENCE && dimension > Package.DIMENSION_REFERENCE) {
-            p = new MediumPackage(this.height, this.width, this.depth, this.weight);
-        }
-        else {
-            p = new BigPackage(this.height, this.width, this.depth, this.weight);
-        }
 
+        Package p = PackageFactory.createPackage(this.height, this.width, this.depth, this.weight);
 
         if (this.dest.equals("FR"))
             assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.FR), 0.001d);
