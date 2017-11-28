@@ -1,16 +1,11 @@
 package com.fredericboisguerin.insa;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.junit.*;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.Collections;
 
 import static org.junit.Assert.assertEquals;
 
@@ -19,7 +14,7 @@ import static org.junit.Assert.assertEquals;
  */
 
 @RunWith(Parameterized.class)
-public class PackageTest {
+public class PackagefTest {
 
     @Parameters
     public static Collection<Object[]> data() {
@@ -43,7 +38,7 @@ public class PackageTest {
     private String dest;
     private String expected;
 
-    public PackageTest(int height, int width, int depth, double weight, String dest, String expected) {
+    public PackagefTest(int height, int width, int depth, double weight, String dest, String expected) {
         this.height = height;
         this.width = width;
         this.depth = depth;
@@ -54,10 +49,12 @@ public class PackageTest {
 
     @org.junit.Test
     public void test() {
-        Package p = new Package(this.height, this.width, this.depth, this.weight);
-        System.out.println("P " + p.calculateLocalShippingCost().doubleValue());
-        System.out.println("Exp : " + Double.parseDouble(expected));
-        assertEquals(Double.parseDouble(expected), p.calculateLocalShippingCost().doubleValue(), 0.001d);
+        ShippingCostsCalculator calc = new ShippingCostsCalculator();
+        Packagef p = new Packagef(this.height, this.width, this.depth, this.weight);
+        if (this.dest.equals("FR"))
+            assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.FR), 0.001d);
+        else
+            assertEquals(Double.parseDouble(expected), calc.calculateShippingCost(p,Destination.MC), 0.001d);
     }
 
 }

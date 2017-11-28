@@ -3,7 +3,7 @@ package com.fredericboisguerin.insa;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Package {
+public class Packagef {
 
     public static final double DIMENSION_REFERENCE = 229d * 162 * 25;
     public static final double WEIGHT_REFERENCE = 1.8d;
@@ -16,7 +16,7 @@ public class Package {
     public int depth;
     public double weight;
 
-    public Package(int height, int width, int depth, double weight){
+    public Packagef(int height, int width, int depth, double weight){
         this.height = height;
         this.width = width;
         this.weight = weight;
